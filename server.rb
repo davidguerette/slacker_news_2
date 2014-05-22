@@ -2,11 +2,15 @@ require 'sinatra'
 require 'pry'
 require 'csv'
 
+get '/comments.html' do
+  erb :comments
+end
+
 get '/' do
   @articles_to_display =[]
   # "Hellow, world!"
   CSV.foreach("articles.csv", headers: true, header_converters: :symbol) do |row|
-    @articles_to_display << row.to_hash
+    @articles_to_display.unshift(row.to_hash)
     # binding.pry
     # the problem is that articles.csv is not saving as an array, but rather a list like firebase, firebase.com, description
     # we need to make this save as an array
@@ -37,9 +41,6 @@ post '/new_article' do
 
   erb :index
 end
-
-
-
 
 
 

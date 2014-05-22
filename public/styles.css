@@ -105,6 +105,7 @@ a {
 
 .title_url {
   font-size: .7em;
+  text-decoration: none;
 }
 
 .points_bar {
