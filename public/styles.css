@@ -65,6 +65,11 @@ div {
   padding: 2px 6px 0px 3px
 }
 
+.nav_list > li > a {
+  text-decoration: none;
+  color: black;
+}
+
 .center {
     margin: 0 auto;
 }
@@ -100,7 +105,7 @@ li {
 
 a {
   text-decoration: none;
-
+  color: #888888;
 }
 
 .title_url {

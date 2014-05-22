@@ -8,52 +8,63 @@
   <body>
     <div id="container">
       <div id="menu">
-      <div>
-        <ul class="nav_list">
-          <li><img src="img/y18.gif" id="logo"/></li>
-          <li style="font-weight: bold">Slacker News</li>
-          <li> | </li>
-          <li class="active">new</li>
-          <li> | </li>
-          <li><a href="/comments.html">comments</a></li>
-          <li> | </li>
-          <li>ask</li>
-          <li> | </li>
-          <li>jobs</li>
-          <li> | </li>
-          <li>submit</li>
-          <li class="right">login</li>
-        </ul>
+        <div>
+          <ul class="nav_list">
+            <li><img src="img/y18.gif" id="logo"/></li>
+            <li style="font-weight: bold">Slacker News</li>
+            <li> | </li>
+            <li class="active">new</li>
+            <li> | </li>
+            <li><a href="/comments.html">comments</a></li>
+            <li> | </li>
+            <li>ask</li>
+            <li> | </li>
+            <li>jobs</li>
+            <li> | </li>
+            <li>submit</li>
+            <li class="right">login</li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-<form action="/new_article" method="post">
-      <label for="new_title">Title:</label>
-      <input type="text" id="new_title" name="title" />
-      <br />
+      <form action="/new_article" method="post">
+            <label for="new_title">Title:</label>
+            <input type="text" id="new_title" name="title" />
+            <br />
 
-      <label for="new_url">URL address:</label>
-      <input type="text" id="new_url" name="url" />
-      <br />
+            <label for="new_url">URL address:</label>
+            <input type="text" id="new_url" name="url" />
+            <br />
 
-      <label for="new_description">Brief description of your sweet article:</label>
-      <input type="text" id="new_description" name="description" />
-      <input type="submit" />
-</form>
-<hr />
+            <label for="new_description">Brief description of your sweet article:</label>
+            <input type="text" id="new_description" name="description" />
+            <input type="submit" />
+      </form>
+
+      <hr />
 
       <div id="content" class="light_background">
         <ol>
           <% @articles_to_display.each do |article| %>
-            <li><span class="title"><%= article[:title] + " " %></span> <span class="title_url">
-              <a target="_blank" href=<%="\"#{article[:url]}\""%> > <%= article[:url]%> </a> </span><br />
-              <p class="points_bar"><%= article[:description] %></p></li>
+          <li>
+            <span class="title">
+              <%= article[:title] + " " %>
+            </span>
+            <span class="title_url">
+              <a target="_blank" href= <%= "\"#{article[:url]}\"" %> > <%= article[:url] %> </a>
+            </span>
+            <br />
+            <p class="points_bar">
+              <%= article[:description] %>
+            </p>
+          </li>
           <% end %>
         </ol>
 
         <p id="more_results">More</p>
 
       </div>
+
       <div class="light_background">
         <hr id="divider" />
       </div>
@@ -90,7 +101,10 @@
             <input type="text" name="search">
           </form>
         </div>
+
       </div>
+
     </div>
+    
   </body>
 </html>
