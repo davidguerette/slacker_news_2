@@ -44,15 +44,11 @@
 
       <div id="content" class="light_background">
         <ol>
-<!--           <li><a href= "https://www.firebase.com/blog/2013-08-15-firebase-leaves-beta-today.html"><span class="title">Firebase Leaves Beta Today </span></a><span class="title_url">(firebase.com)</span></li>
-          <p class="points_bar">63 points by lyime 56 minutes ago | 17 comments</p>
- -->
-
-
-    <% @articles_to_display.each do |article| %>
-       <li><span class="title"><%= article[:title] + " " %></span> <span class="title_url"> <a target="_blank" href=<%="\"#{article[:url]}\""%> > <%= article[:url]%> </a> </span><br />
-       <p class="points_bar"><%= article[:description] %></p></li>
-       <% end %>
+          <% @articles_to_display.each do |article| %>
+            <li><span class="title"><%= article[:title] + " " %></span> <span class="title_url">
+              <a target="_blank" href=<%="\"#{article[:url]}\""%> > <%= article[:url]%> </a> </span><br />
+              <p class="points_bar"><%= article[:description] %></p></li>
+          <% end %>
         </ol>
 
         <p id="more_results">More</p>

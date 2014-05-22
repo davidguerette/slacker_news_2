@@ -26,17 +26,6 @@ post '/new_article' do
   CSV.open('articles.csv', 'a') do |file|
     file.puts(article_for_csv)
   end
-  # binding.pry
-  # Read the input from the form the user filled out
-  # @tasks = params['task_name']
-
-  # Open the "tasks" file and append the task
-  #File.open('tasks', 'a') do |file|
-   # file.puts(task)
-  # end
-
-  # Send the user back to the home page which shows
-  # the list of tasks
   redirect '/'
 
   erb :index
