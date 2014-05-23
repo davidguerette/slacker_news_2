@@ -7,10 +7,10 @@ require 'json'
 
 def get_connection
   if ENV.has_key?("REDISCLOUD_URL")
-      Redis.new(url: ENV["REDISCLOUD_URL"])
-    else
-      Redis.new
-    end
+    Redis.new(url: ENV["REDISCLOUD_URL"])
+  else
+    Redis.new
+  end
 end
 
 
@@ -23,7 +23,6 @@ def find_articles
   serialized_articles.each do |article|
     articles << JSON.parse(article, symbolize_names: true)
   end
-
   articles
 end
 
@@ -41,19 +40,25 @@ get '/comments.html' do
 end
 
 get '/' do
-  @articles_to_display =[]
-  CSV.foreach("articles.csv", headers: true, header_converters: :symbol) do |row|
-    @articles_to_display.unshift(row.to_hash)
-  end
+  @articles_to_display = find_articles
+  #display articles if reading from CSV
+    # @articles_to_display =[]
+    # CSV.foreach("articles.csv", headers: true, header_converters: :symbol) do |row|
+    #   @articles_to_display.unshift(row.to_hash)
+    # end
   erb :index
 end
 
 post '/new_article' do
-  article_for_csv = []
-  article_for_csv = [params["title"], params["url"], params["description"]]
-  CSV.open('articles.csv', 'a') do |file|
-    file.puts(article_for_csv)
-  end
+
+  #Save articles to redis
+  save_articles(params["url"], [params["title"], params["description"])
+
+  #Save article to CSV
+  # article_for_csv = [params["title"], params["url"], params["description"]]
+  # CSV.open('articles.csv', 'a') do |file|
+  #   file.puts(article_for_csv)
+  # end
   redirect '/'
 
   erb :index
