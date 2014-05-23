@@ -25,20 +25,22 @@
             <li class="right">login</li>
           </ul>
         </div>
+
       </div>
 
-      <form action="/new_article" method="post">
-            <label for="new_title">Title:</label>
-            <input type="text" id="new_title" name="title" />
+      <form class="light_background" action="/new_article" method="post">
+            <label for="new_title"></label>
+            <input type="text" id="new_title" name="title" placeholder="Title:" />
             <br />
 
-            <label for="new_url">URL address:</label>
-            <input type="text" id="new_url" name="url" />
+            <label for="new_url"></label>
+            <input type="text" id="new_url" name="url" placeholder="URL address:" />
             <br />
 
-            <label for="new_description">Brief description of your sweet article:</label>
-            <input type="text" id="new_description" name="description" />
-            <input type="submit" />
+            <label for="new_description"></label>
+            <input type="text" id="new_description" name="description" placeholder="Breif description:" min="20"/>
+            <br />
+            <input type="submit" value="Add some slack" />
       </form>
 
       <hr />
@@ -105,6 +107,6 @@
       </div>
 
     </div>
-    
+
   </body>
 </html>

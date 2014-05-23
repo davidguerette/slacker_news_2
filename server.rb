@@ -1,9 +1,6 @@
 require 'sinatra'
-require 'pry'
-require 'csv'
+require 'redis'
 require 'json'
-
-
 
 def get_connection
   if ENV.has_key?("REDISCLOUD_URL")
@@ -12,7 +9,6 @@ def get_connection
     Redis.new
   end
 end
-
 
 def find_articles
   redis = get_connection
@@ -23,17 +19,18 @@ def find_articles
   serialized_articles.each do |article|
     articles << JSON.parse(article, symbolize_names: true)
   end
+
   articles
 end
 
-def save_articles(url, title, description)
-  article = {url: url, title: title, description: description }
+def save_article(url, title, description)
+  article = { url: url, title: title, description: description }
 
   redis = get_connection
-
-  redis.rpush("slacker:articles", articles.to_json)
+  redis.rpush("slacker:articles", article.to_json)
 end
 
+# rest of webapp goes here ...
 
 get '/comments.html' do
   erb :comments
